@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dercaqti6rc8c"]
+
+[ext_resource type="Script" path="res://scripts/shoepower.gd" id="1_q6v03"]
+[ext_resource type="AudioStream" uid="uid://d4mbecqh60g6n" path="res://assets/sounds/power_up.wav" id="2_q2yrm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ye03r"]
+load_path = "res://.godot/imported/world_tileset(new).png-edfdc55a755c92dc507cff3568ec8e7b.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a87ah"]
+size = Vector2(27, 12)
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_q6v03")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_ye03r")
+region_enabled = true
+region_rect = Rect2(173, 77, 35, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_a87ah")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_q2yrm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
