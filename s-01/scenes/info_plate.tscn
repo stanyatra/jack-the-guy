@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://2jt7uvpmpyme"]
+
+[ext_resource type="Script" path="res://scripts/info_plate.gd" id="1_fw87x"]
+[ext_resource type="Texture2D" uid="uid://d2kc85tuy7bf5" path="res://assets/sprites/world_tileset.png" id="2_eyf8e"]
+[ext_resource type="FontFile" uid="uid://dry1ij2poxavj" path="res://assets/fonts/PixelOperator8.ttf" id="3_7uxhk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt06m"]
+size = Vector2(14, 14)
+
+[node name="InfoPlate" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_fw87x")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_eyf8e")
+region_enabled = true
+region_rect = Rect2(128, 49, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bt06m")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -38.0
+offset_top = -27.0
+offset_right = 38.0
+offset_bottom = -8.0
+theme_override_colors/font_color = Color(0.396803, 0.142767, 0.0340104, 1)
+theme_override_fonts/font = ExtResource("3_7uxhk")
+theme_override_font_sizes/font_size = 8
+text = "
+SlimE AlerT!
+"
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
